@@ -1,0 +1,152 @@
+Linguaggio interpretato; script letti ed eseguiti riga per riga.
+è più efficente dei vecchi linguaggi shelling fa comunque una compilazione al volo prima di eseguire.
+può essere usato in maniera interattiva fornendo comandi al volo da riga di comando, molto utile per il debug.
+Ha la gestione automatica della memoria. Questo viene fatto tenendo per ogni variabile, oggetto , funzione, si tiene in memoria l'oggetto creato e dei riferimenti ad essi.
+Ogni volta sìche si esce dall'ambito di utilizzo di un oggetto questo viene distrutto con liberazione di memoria.
+La tipizzazione è  automatica: in una variabile possiamo mettere un intero, una lista, un double. La variabile prende in automatico il tipo di ciò che ci metto dentro.
+L'interprete più usato è scritto in C, disponibile in tutte le piattaforme ed open source.
+
+Scrivendo da riga di comando "python" o "python3" in base alla versione si ha accesso ai comandi python da riga di comando 
+
+/ è sempre divisione in virgola mobile -> 5/2 in C fa 2, qui fa 2.5
+Se si vuole la divisione classica si usa 5//2
+
+A differenza del c c'è anche l'elevamento a potenza con il "**" -> 5**2 = 25
+
+Ogni espressione ha comunque un suo tipo e si può valutare con type() 
+In python tutto è un oggetto. Se infatti faccio type(3) mi dice "class <int>" quindi tutto è un oggetto ed ogni oggetto appartiene ad una classe.
+L'int qui non è spezzettato nelle varie versioni a 8bit a 16, o 32. Adatta la dimensione degli int in base al numero che bisogna metterci dentro.
+
+I float sono i double del C.
+
+Non ho bisogno qui di dichiarare le variabili.
+L'assegnazione a= 0.3 vuol dire che sto creando l'oggetto 0.3 in memoria e la variabile a non è altro che un semplice nome che fa riferimento a quell'oggetto in memoria, come se fosse un puntatore. "a" è solo un riferimento all'oggetto.
+
+pass -> comando non fare niente. se stiamo sviluppando del codice e ci serve per verificare ad esempio la correttezza del passaggio in qualche struttura tipo if()
+oppure può essere utile per fermarsi in un certo punto del programma con il debug
+
+Ci potrebbe essere necessità di utilizzare diverse versinoni di python per diversi script. Dato che quando si installa una libreria questa può entrare in conflitto con altre
+normalmente si evita di istallare librerie nel python di sistema. Si va a rendere indipendenti gli interpreti che vogliamo utilizzare; quello che si va a fare è creare un ambiente virtuale
+per ciascun progetto. Gli ambienti virtuali fanno parte dei pacchetti di istallazione python. Per crearli si può usare il pacchetto "venv" o "conba"
+
+Per creare l'ambiente virtuale possiamo farlo sia da riga di comando che da visual studio. Quando crea l'ambiente va a copiarsi le librerie della versione di python scelta.
+(Quando si cambia ambiente virtuale chiudere tutti i terminali!!, se apro un nuovo termianle qui in visual studio mi esce scritto davanti al percorso in cui sono (.venv)) 
+Quindi tutto quello che sto facendo lo sto facendo dentro quel virtual environment
+
+pip -> gestore di pacchetti di pythn 
+pip list -> ci elenca i pacchetti installati in questa versione 
+per usare una qualunque libreria si fa "pip install nome_libreria" e l'abbiamo cosi a disposizione
+Ogni pacchetto python ha una sua versione, quindi si può specificare in fase di istallazione
+
+Mentre in C ogni pezzo di codice deve essere in una funzione, in python non si è obbligati ad avere una funzione main, il codice può essere messo anche direttamente nello script.
+Non c'è necessità di definire le variabili; assegnamo quello che vogliamo alle nostre variabili senza dover specificare di che tipo sono.
+In C il testo del linguaggio è free flow, possiamo scrivere anche tutto su una stessa riga senza andare a capo, si usano poi le parentesi graffe per dire ad esempio all'interno di un for o while dove fermarsi.
+In python non è free flow, ci sono una serie di comandi che definiscono il sottoblocco -> : i due punti introducono un blocco di codice che deve essere indentaro rispetto a chi fa partire
+il blocco (di default la prassi è 4 spazi). Mischiando in uno stesso blocco di codice righe con diversi spazi si avrà un errore di sintassi; non mischiare inoltre tab e spazi,
+NON sono la stessa cosa. La fine del blocco di righe da eseguire è data dal cambio indentazione
+
+I commenti si fanno con il # 
+
+Con python mentr eseguiamo abbiamo a disposizione una "Debag console" che ci permette di eseguire comandi python o valutare espressioni durante l'esecuzione 
+
+Le stringhe si possono racchiudere si atra apici singoli ' ' che doppi " " o anche tripli apici o triple virgolette
+In python non ci interessa come vengono memorizzate in memoria le stringhe; per noi è semplicemente una sequenza di caratteri e dentro ci possiamo mettere quello che ci pare
+anche un'icona volendo. Se abbiamo però delle stringhe su file non possiamo prendere e mettere in una stringa così; bisogna sapere come è fatta la codifica. Viene di base trasportato in utf 8 ma
+non è detto che il file sia codificato in quel modo, quindi va usata la decodifica giusta. stessa cosa quando vogliamo scrivere su un file di output, va specificata la codifica.
+Quando ho gli apici tripli posso anche andare a caso all'interno della stringa al posto dello \n.
+
+Nelle righe di codice è importante come andare a capo se la riga diventa troppo lunga. In un'operazione aritmetica con le parentesi si può andare a capo quando si vuole;
+altrimenti con  la sbarretta \ 
+
+isinstance(3, int) -> ci permette di interrogare un oggetto col suo tipo, ritorna True o False 
+Tutte le classi appartengono alla macroclasse oggetto quindi instance(3, object) da semore True
+
+Un oggetto, la classe può essere costruita utilizzando un costruttore del tipo int(), float(), complex(), bool(). Questo può servire per le conversioni!
+Una conversione che da errore è ad esempio int("ciao") questa stringa è un'eccezione. Funziona invece int("123").
+Quindi è possibile costruire oggetti passando al costruttore un parametro idoneo alla conversione
+bool(1) = True, bool(7) = True bool("ciao") = True -> qualsiasi cosa diversa da zero o da stringa vuota è True
+bool(0) = False, bool("") = False
+
+Ci sono delle parole chiave che non possono essere utilizzate!
+Importiamo ad esempio la libreriea keyword (-> import keyword) 
+Con nome_libreria.funzione possiamo scrivere keyword.kwlist e vediamo tutte le parole chiave che non si possono usare
+
+Metodi dunder sono i metodi con il double underscore. Sono i metodi speciali definiti dal linguaggio
+
+In pythonn il comportamento di una variabile è molto simile a quella dei puntatori in C. La variabile con nome x contiene l'indirizzo di memoria dove il contenuto è salvato.
+Tutto è dinamico per questo anche più lento.
+
+Concettualmente abbiamo due spazi diversi, lo spazio dei nomi e quello dei valori.
+
+Quando facciamo degli assegnamenti non viene creato un nuovo oggetto ma un nuovo assegnamento; se gli oggetti non sono modificabili non c'è problema.
+a = ; b=a; se cambio a, b rimane comunque uguale a 4 perchè gli interi non sono modificabili. 
+Se invece a = [1,2,3,4] e b = a; qui con le liste se cambio a cambierà anche b.
+Per fare in modo di copiare la lista in b e non assegnargli la stessa di a bisogna fare b = a.copy()
+Quindi mentre in c con l'assegnamento si faceva una copia dell'oggetto, in python l'assegnamento assume il significato di riferimento, la copia va specificata.
+Numeri stringhe e tutti gli oggetti semplici sono immutabili
+
+Possiamo eventalmente creare nuovi oggetti
+es: class Person:
+        pass
+
+a is b -> si usa per chiedersi se il nome a fa rifermineto alla stessa cosa a cui fa riferimento b
+a in b -> se 1 = 3 e b = [1,2,3,4]  allora a è in b
+per rispondere True o False comunque dietro sono fatte le stesse operazioni logiche di scorrimento del vettore e confronto che faremmo in c a mano
+Quidni comunque anche se noi abbiamo subito il risultato,richiede comunque il suo tempo per la ricerca.
+
+L'assegnamento in python è un comando, uno statement; non è un'espressione. Non si puo fare ad es. ( while x = leggi_carattere ..) 
+Si possono fare più assegnamenti contemporaneamente:
+x, y, z = 5, 5, 8 -> questa è una tupla
+Si possono in questo modo anche scambiare variabili -> x, y = y, x senza aver bisogno di una terza variabile di appoggio nel mezzo.
+
+non esiste il do-while ma esiste l'else nel while
+
+while condizione:
+    istruzioni
+else:                    // se la condizione è falsa allora faccio le istruzioni messe nell'else
+    istruzioni 
+
+La differenza nel mettere le ultime istruzioni fuori dal while è che se nel while ho un break allora posso interrompere e uscire dal ciclo senza eseguire quelle istuzioni contenute nell'else.
+o comunque sostituisce un'eventuale if messo dopo il while per fare operazioni nel caso non abbia trovato ciò che volevo
+
+------------------------------ FUNZIONI ------------------
+"def" è per iniziare a definire una funzione 
+si può omettere di specificare i tipi delle variabili
+A volte pero non specificare nulla non è bellissimo, allore si introdotto il type hints che è un modo per indicare che tipo di type ci si aspetta; in questo modo
+l'ambiente di sviluppo può aiutarci sapendo da prima che quella potrebbe essere una stringa
+def greeting(name: str) ->str:
+l'input name ci aspettiamo sia una stringa ed inoltre con il tipo dopo la freccetta diciamo che in uscita anche ci aspettiamo una stringa
+ 
+ In c veniva fatta una copia dei parametri passati, in python no si fa un assegnamento
+ Le variabili usate nelle funzioni rimangono locali alla funzione. Le variabili definite nel contesto esterno della funzione sono definite sotto "globals"
+ Se all'interno della funzione vogliamo modificare una variabile bisogna specificargli prendi la variabile espressa nel contesto globale e portala nel locale, questo si può fare
+ dichiarando nella funzione global(a). In questo modo se modifico a nella funzione cambia anche fuori.
+ Sconsigliato comunque usare global spesso, la cosa migliore è usare a come valore di ritorno.
+
+ Se però passo una lista in una funzione e questa viene modificata con a=a.append(4) anche nel contesto globale avremo la modifica perchè quello che sto modificando è la lista stessa a cui stavamo puntando
+ Se invece dentro la funzione scrivo a =[3,4,5] quindi a uguale ad un'altra lista quella fuori non si modifica perchè è un altro oggetto proprio quello scritto
+
+ Se abbiamo una funzione che modifica una lista o un altro oggetto tipo lista allora NON usare numeri di defaul nella definizione della funzione. (vedi esempio slide)
+
+ In python si possono piu facilmente fare funzioni con un numero non definito di argomenti di input. Si usa l'asterisco davanti al nome che si da come input. es:
+ def enroll(*courses):
+    ....
+
+------------- TIPI DI DATO ----------------------------
+Le liste contengono dati di qualsiasi tipo al loro interno. Sono sequenze ordinate in base a come li abbiamo inseriti dentro. Sono implementate in generale come vettore di 
+oggetti;sono lo strumento principale che si usa in python. Di solito sono tutte dello stesso tipo (gli oggetti contenuti) ma non è necessario. Le tuple sono le stessa cosa ma 
+NON sono mutabili e si caratterizzano con le parentesi tonde
+Le altre collezioni possibili sono il dict che sta per dizionario -> sequenza non ordinata di coppie chiave:valore; associa quindi una chaive ad un valore. Il tipo della chiave
+può essere quello che ci pare. Non sono ordinati; dall'edizine 3.7 di norma gli oggetti mantengono la posizione in base all'ordine di inserimento, ma gia quando inizio a 
+mettere e togliere elementi ciò non è piu valido.
+Il set invece è una collezione di oggetti che compaiono una volta sola. Quando le dimensioni diventano significative cercare nel set è molto più rapido che in una lista.
+GLi array non hanno dimensioni fisse ma le liste possono essere ridimensionate all'occorrenza. 
+Volendo si puo usare il comando list per creare una lista -> es: list('abc') -> [a, b, c]
+
+
+
+
+
+
+
+
