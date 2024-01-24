@@ -58,10 +58,7 @@ def read_cities(filename: str) -> list[tuple[str, int]]:
     except FileNotFoundError:
         return
 
-    
-
-
-
 
 filename = '/home/ute/Scrivania/Python/Lezione02/cities01.bin'
 lst = read_cities(filename)
+    
